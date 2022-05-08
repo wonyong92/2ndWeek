@@ -36,6 +36,7 @@ public class main {
         }
         return "true";
     }
+    
     public static String divide(double a,double b){
 
         return a/b+"";
@@ -51,6 +52,7 @@ public class main {
         System.out.print("\033[H\033[2J");
         System.out.flush();
     }
+    
     public static void cont_check(){
 
         System.out.printf("press any key continue or press 'X' to exit : ");
@@ -72,6 +74,7 @@ public class main {
         System.out.printf("check your input and retry%n");
         cont_check();
     }
+    
     public static boolean is_number(String str)
     {
         int count =0;
@@ -94,7 +97,6 @@ public class main {
             }
         }
         return true;
-
     }
 
     public static boolean set_var(String msg,String var)
@@ -120,7 +122,7 @@ public class main {
                     return false;
                 }
             }
-            else if(msg.equals(right_msg))
+         else if(msg.equals(right_msg))
             {
                 if(is_number(var))
                 {
@@ -134,7 +136,7 @@ public class main {
 
             }
 
-            else
+          else
             {
                 cvar = var.charAt(0);
                 op +=cvar;
@@ -195,19 +197,23 @@ public class main {
             {
                 continue;
             }
-                System.out.println("\n\n");
+            
+            System.out.println("\n\n");
 
             if(!set_var(right_msg,right))
             {
                 continue;
             }
-                System.out.println("\n\n");
+            
+            System.out.println("\n\n");
+            
             if(!set_var(op_msg,op))
             {
                     continue;
             }
+            
             clear();
-
+            
             System.out.printf("result :: %.5f %s %.5f = %.5f\n",Dleft,op,Dright,Dresult);
             System.out.println();
             cont_check();
