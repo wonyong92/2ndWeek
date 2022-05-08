@@ -17,7 +17,7 @@ public class main {
     static String control = "";
     static double temp;
     static char cvar;
-        
+
     public static double plus(double a,double b){
         return a+b;
     }
@@ -62,6 +62,8 @@ public class main {
     }
     public static void set_var(String msg,String var) throws Exception
     {
+
+
         System.out.print(msg);
 
         var = sc.next();
@@ -138,8 +140,11 @@ public class main {
             System.out.println("calculator start");
             try
             {
+                System.out.println("\n");
                 set_var(left_msg, left);
+                System.out.println("\n\n");
                 set_var(right_msg,right);
+                System.out.println("\n\n");
                 set_var(op_msg,op);
             }
             catch(Exception e)
@@ -161,6 +166,7 @@ public class main {
             }
 
             System.out.printf("result :: %.5f %s %.5f = %.5f\n",Dleft,op,Dright,Dresult);
+
             System.out.println();
 
             cont_check();
