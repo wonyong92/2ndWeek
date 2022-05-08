@@ -57,7 +57,7 @@ public class main {
         System.out.flush();
     }
     public static void cont_check(){
-        op = "";
+
         System.out.printf("press any key continue or press 'X' to exit : ");
 
         control = sc.nextLine();
@@ -74,6 +74,7 @@ public class main {
     {
         int count =0;
         char temp;
+
         if(str.length()==0)
         {
             return false;
@@ -82,12 +83,13 @@ public class main {
         {
             temp = str.charAt(i);
             if((int)temp ==46)
+            {
                 count ++;
-            if(((int)temp !=46&&(int)temp <48 )|| (int)temp>57 ||(int)temp==46||count>=2)
+            }
+            if(((int)temp !=46&&(int)temp <48 )|| (int)temp>57 ||count>=2)
             {
                 return false;
             }
-
         }
         return true;
 
@@ -185,7 +187,6 @@ public class main {
                         wrong("input error please check \"op\" input");
                         return false;
 
-
                 }
             }
         clear();
@@ -206,20 +207,17 @@ public class main {
 
             if(!set_var(left_msg, left))
             {
-
                 continue;
             }
                 System.out.println("\n\n");
 
             if(!set_var(right_msg,right))
             {
-
                 continue;
             }
                 System.out.println("\n\n");
             if(!set_var(op_msg,op))
             {
-
                     continue;
             }
 
