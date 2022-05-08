@@ -83,7 +83,7 @@ public class main {
                 }
 
             else{
-                System.out.print(cvar);
+                
                 op +=cvar;
                 switch(cvar)
                 {
@@ -104,6 +104,7 @@ public class main {
                         break;
                     default:
                         System.out.print("input error please check op input");
+                        throw new Exception("");
                         break;
                 }
             }
