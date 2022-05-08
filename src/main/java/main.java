@@ -163,7 +163,7 @@ public class main {
         sc = new Scanner(System.in);
         while(true)
             {
-
+                op = new String("");
                 clear();
                 System.out.println("calculator start");
                 try {
@@ -204,7 +204,7 @@ public class main {
                     System.out.printf("X inputted. calculator will be stopped\n\n");
                     System.exit(0);
                 }
-                op = new String("");
+                
                 clear();
 
 
