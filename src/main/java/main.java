@@ -1,5 +1,6 @@
-import java.util.*;
-import java.lang.*;
+
+        import java.util.*;
+        import java.lang.*;
 
 
 public class main {
@@ -66,24 +67,24 @@ public class main {
 
         if(var.equals(""))
         {
-           System.out.println("nothing inputted");
-           cont_check();
-           throw new Exception();
+            System.out.println("nothing inputted");
+            cont_check();
+            throw new Exception();
         }
         cvar = var.charAt(0);
 
         try{
             if(msg.equals(left_msg))
-                {
-                    Dleft = Double.parseDouble(var);
-                }
+            {
+                Dleft = Double.parseDouble(var);
+            }
             else if(msg.equals(right_msg))
-                {
-                    Dright = Double.parseDouble(var);
-                }
+            {
+                Dright = Double.parseDouble(var);
+            }
 
             else{
-                
+
                 op +=cvar;
                 switch(cvar)
                 {
@@ -105,19 +106,21 @@ public class main {
                     default:
                         System.out.print("input error please check op input");
                         throw new Exception("");
-                        
+
                 }
             }
         }
         catch(ArithmeticException e)
-            {
-                clear();
-                System.out.println("you tried diving or moduling by zero \n please check your input");
-                cont_check();
-                throw new Exception("");
-            }
+        {
+            clear();
+            System.out.println("you tried diving or moduling by zero \nplease check your input\n");
+            cont_check();
+            throw new Exception("");
+        }
         catch(Exception e) {
+            clear();
             System.out.printf("wrong input....%n");
+            cont_check();
             throw new Exception("");
         }
         clear();
@@ -128,43 +131,44 @@ public class main {
         clear();
         sc = new Scanner(System.in);
         while(true)
+        {
+            op = new String("");
+            clear();
+            System.out.println("calculator start");
+            try
+            {
+                set_var(left_msg, left);
+                set_var(right_msg,right);
+                set_var(op_msg,op);
+            }
+            catch(Exception e)
             {
                 op = new String("");
-                clear();
-                System.out.println("calculator start");
-                try
-                    {
-                        set_var(left_msg, left);
-                        set_var(right_msg,right);
-                        set_var(op_msg,op);
-                    }
-                catch(Exception e)
-                    {
-                        op = new String("");
-                        continue;
-                    }
+                continue;
+            }
 
-                clear();
+            clear();
 
-                if(op.equals("/")||op.equals("%"))
-                    {
-                        if(Dright == 0)
-                        {
-                            op = new String("");
-                            continue;
-                        }
-                    }
+            if(op.equals("/")||op.equals("%"))
+            {
+                if(Dright == 0)
+                {
+                    op = new String("");
 
-                System.out.printf("Dleft : %3f\n",Dleft);
-                System.out.printf("Dright : %3f\n",Dright);
-                System.out.printf("op : %s\n",op);
+                    continue;
+                }
+            }
 
-                System.out.print("result ");
-                System.out.println(Dresult);
-                System.out.println();
+            System.out.printf("Dleft : %3f\n",Dleft);
+            System.out.printf("Dright : %3f\n",Dright);
+            System.out.printf("op : %s\n",op);
 
-                cont_check();
+            System.out.printf("result : %3f\n",Dresult);
+            System.out.println();
 
-            }//while end
-       }//main end
-    }//class end
+            cont_check();
+
+        }//while end
+    }//main end
+}//class end
+
