@@ -45,12 +45,7 @@ public class main {
 
         return a%b+"";
     }
-    public static String module_c(double a,double b){
-        if(b==0.0){
-            return "false";
-        }
-        return "true";
-    }
+
     public static void clear()
     {
         System.out.print("\033[H\033[2J");
@@ -70,6 +65,13 @@ public class main {
         clear();
     }
 
+    public static void wrong(String str)
+    {
+        clear();
+        System.out.println(str);
+        System.out.printf("check your input and retry%n");
+        cont_check();
+    }
     public static boolean is_number(String str)
     {
         int count =0;
@@ -94,29 +96,18 @@ public class main {
         return true;
 
     }
-    public static void wrong(String str)
-    {
-        clear();
-        System.out.println(str);
-        System.out.printf("check your input and retry%n");
-        cont_check();
-    }
 
     public static boolean set_var(String msg,String var)
     {
         System.out.print(msg);
-
         var = sc.nextLine();
 
         if(var.equals(""))
         {
-
             wrong("nothing inputted");
             return false;
-
         }
 
-        cvar = var.charAt(0);
         if(msg.equals(left_msg))
             {
                 if(is_number(var))
@@ -145,6 +136,7 @@ public class main {
 
             else
             {
+                cvar = var.charAt(0);
                 op +=cvar;
                 switch(cvar)
                 {
@@ -164,34 +156,28 @@ public class main {
                         }
                         else
                         {
-                            clear();
-                            wrong("you tried diving or moduling by zero \nplease check your input\n");
+                            wrong("you tried diving or moduling by zero");
                             return false;
                         }
                         break;
                     case '%':
-                        if(Boolean.parseBoolean(module_c(Dleft,Dright)))
+                        if( Boolean.parseBoolean( divide_c(Dleft,Dright)))
                         {
                             Dresult =  Double.parseDouble(module(Dleft,Dright));
                         }
                         else
                         {
-                            clear();
-                            wrong("you tried diving or moduling by zero \nplease check your input\n");
+                            wrong("you tried diving or moduling by zero");
                             return false;
                         }
                         break;
-
                     default:
-
                         wrong("input error please check \"op\" input");
                         return false;
-
                 }
             }
         clear();
         return true;
-
     }
 
     public static void main(String[] args)
@@ -220,21 +206,10 @@ public class main {
             {
                     continue;
             }
-
             clear();
 
-            if(op.equals("/")||op.equals("%"))
-            {
-                if(Dright == 0)
-                {
-                    continue;
-                }
-            }
-
             System.out.printf("result :: %.5f %s %.5f = %.5f\n",Dleft,op,Dright,Dresult);
-
             System.out.println();
-
             cont_check();
 
         }//while end
