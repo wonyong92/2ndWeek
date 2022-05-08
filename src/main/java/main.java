@@ -6,7 +6,7 @@ public class main {
     static Scanner sc;
     static String left_msg = "input left number : ";
     static String right_msg = "input right number : ";
-    static String op_msg = "input op number : ";
+    static String op_msg = "input operator : ";
     static double Dleft;
     static double Dright;
     static double Dresult;
