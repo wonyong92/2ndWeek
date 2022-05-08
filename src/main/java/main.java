@@ -105,7 +105,7 @@ public class main {
                     default:
                         System.out.print("input error please check op input");
                         throw new Exception("");
-                        break;
+                        
                 }
             }
         }
