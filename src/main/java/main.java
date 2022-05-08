@@ -49,7 +49,7 @@ public class main {
         if(b==0.0){
             return "false";
         }
-        return a%b+"";
+        return "true";
     }
     public static void clear()
     {
