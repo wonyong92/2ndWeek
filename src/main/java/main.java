@@ -160,7 +160,7 @@ public class main {
                 }
             }
 
-            System.out.printf("%.5f %s %.5f = %.5f\n",Dleft,op,Dright,Dresult);
+            System.out.printf("result :: %.5f %s %.5f = %.5f\n",Dleft,op,Dright,Dresult);
             System.out.println();
 
             cont_check();
