@@ -18,30 +18,38 @@ public class main {
     static double temp;
     static char cvar;
 
-    public static double plus(double a,double b){
-        return a+b;
+    public static String plus(double a,double b){
+        return a+b+"";
     }
 
-    public static double minus(double a,double b){
-        return a-b;
+    public static String minus(double a,double b){
+        return a-b+"";
     }
 
-    public static double multi(double a,double b){
-        return a*b;
+    public static String multi(double a,double b){
+        return a*b+"";
     }
 
-    public static double divide(double a,double b){
+    public static String divide_c(double a,double b){
         if(b==0.0){
-            throw new ArithmeticException();
+            return "false";
         }
-        return a/b;
+        return "true";
+    }
+    public static String divide(double a,double b){
+
+        return a/b+"";
     }
 
-    public static double module(double a,double b){
+    public static String module(double a,double b){
+
+        return a%b+"";
+    }
+    public static String module_c(double a,double b){
         if(b==0.0){
-            throw new ArithmeticException();
+            return "false";
         }
-        return a%b;
+        return a%b+"";
     }
     public static void clear()
     {
@@ -49,6 +57,7 @@ public class main {
         System.out.flush();
     }
     public static void cont_check(){
+        op = "";
         System.out.printf("press any key continue or press 'X' to exit : ");
 
         control = sc.nextLine();
@@ -60,73 +69,128 @@ public class main {
         }
         clear();
     }
-    public static void set_var(String msg,String var) throws Exception
+
+    public static boolean is_number(String str)
     {
+        int count =0;
+        char temp;
+        if(str.length()==0)
+        {
+            return false;
+        }
+        for(int i = 0;i<str.length();i++)
+        {
+            temp = str.charAt(i);
+            if((int)temp ==46)
+                count ++;
+            if(((int)temp !=46&&(int)temp <48 )|| (int)temp>57 ||(int)temp==46||count>=2)
+            {
+                return false;
+            }
 
+        }
+        return true;
 
+    }
+    public static void wrong(String str)
+    {
+        clear();
+        System.out.println(str);
+        System.out.printf("check your input and retry%n");
+        cont_check();
+    }
+
+    public static boolean set_var(String msg,String var)
+    {
         System.out.print(msg);
 
         var = sc.nextLine();
 
         if(var.equals(""))
         {
-            System.out.println("nothing inputted");
-            cont_check();
-            throw new Exception();
-        }
-        cvar = var.charAt(0);
 
-        try{
-            if(msg.equals(left_msg))
+            wrong("nothing inputted");
+            return false;
+
+        }
+
+        cvar = var.charAt(0);
+        if(msg.equals(left_msg))
             {
-                Dleft = Double.parseDouble(var);
+                if(is_number(var))
+                {
+                    Dleft = Double.parseDouble(var);
+                }
+                else
+                {
+                    wrong("wrong \"left number\" input");
+                    return false;
+                }
             }
             else if(msg.equals(right_msg))
             {
-                Dright = Double.parseDouble(var);
+                if(is_number(var))
+                {
+                    Dright = Double.parseDouble(var);
+                }
+                else
+                {
+                    wrong("wrong \"right number\" input");
+                    return false;
+                }
+
             }
 
-            else{
-
+            else
+            {
                 op +=cvar;
                 switch(cvar)
                 {
                     case '+':
-                        Dresult = plus(Dleft,Dright);
+                        Dresult = Double.parseDouble(plus(Dleft,Dright));
                         break;
                     case '-':
-                        Dresult =  minus(Dleft,Dright);
+                        Dresult =  Double.parseDouble(minus(Dleft,Dright));
                         break;
                     case '*':
-                        Dresult =  multi(Dleft,Dright);
+                        Dresult =  Double.parseDouble(multi(Dleft,Dright));
                         break;
                     case '/':
-                        Dresult =  divide(Dleft,Dright);
+                        if(Boolean.parseBoolean(divide_c(Dleft,Dright)))
+                        {
+                            Dresult =  Double.parseDouble(divide(Dleft,Dright));
+                        }
+                        else
+                        {
+                            clear();
+                            wrong("you tried diving or moduling by zero \nplease check your input\n");
+                            return false;
+                        }
                         break;
                     case '%':
-                        Dresult =  module(Dleft,Dright);
+                        if(Boolean.parseBoolean(module_c(Dleft,Dright)))
+                        {
+                            Dresult =  Double.parseDouble(module(Dleft,Dright));
+                        }
+                        else
+                        {
+                            clear();
+                            wrong("you tried diving or moduling by zero \nplease check your input\n");
+                            return false;
+                        }
                         break;
+
                     default:
-                        System.out.print("input error please check op input");
-                        throw new Exception("");
+
+                        wrong("input error please check \"op\" input");
+                        return false;
+
 
                 }
             }
-        }
-        catch(ArithmeticException e)
-        {
-            clear();
-            System.out.println("you tried diving or moduling by zero \nplease check your input\n");
-            cont_check();
-            throw new Exception("");
-        }
-        catch(Exception e) {
-            clear();
-            System.out.printf("wrong input....%n");
-            cont_check();
-            throw new Exception("");
-        }
         clear();
+        return true;
+
     }
 
     public static void main(String[] args)
@@ -135,22 +199,28 @@ public class main {
         sc = new Scanner(System.in);
         while(true)
         {
-            op = new String("");
+            op = "";
             clear();
             System.out.println("calculator start");
-            try
+            System.out.println("\n");
+
+            if(!set_var(left_msg, left))
             {
-                System.out.println("\n");
-                set_var(left_msg, left);
-                System.out.println("\n\n");
-                set_var(right_msg,right);
-                System.out.println("\n\n");
-                set_var(op_msg,op);
-            }
-            catch(Exception e)
-            {
-                op = new String("");
+
                 continue;
+            }
+                System.out.println("\n\n");
+
+            if(!set_var(right_msg,right))
+            {
+
+                continue;
+            }
+                System.out.println("\n\n");
+            if(!set_var(op_msg,op))
+            {
+
+                    continue;
             }
 
             clear();
@@ -159,8 +229,6 @@ public class main {
             {
                 if(Dright == 0)
                 {
-                    op = new String("");
-
                     continue;
                 }
             }
