@@ -1,6 +1,6 @@
 
-        import java.util.*;
-        import java.lang.*;
+import java.util.*;
+import java.lang.*;
 
 
 public class main {
@@ -17,6 +17,7 @@ public class main {
     static String control = "";
     static double temp;
     static char cvar;
+        
     public static double plus(double a,double b){
         return a+b;
     }
