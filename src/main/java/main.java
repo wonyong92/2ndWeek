@@ -50,7 +50,7 @@ public class main {
     }
     public static void cont_check(){
         System.out.printf("press any key continue or press 'X' to exit : ");
-        sc.nextLine();
+
         control = sc.nextLine();
 
         if (control.equals("X")||control.equals("x")) {
@@ -66,7 +66,7 @@ public class main {
 
         System.out.print(msg);
 
-        var = sc.next();
+        var = sc.nextLine();
 
         if(var.equals(""))
         {
