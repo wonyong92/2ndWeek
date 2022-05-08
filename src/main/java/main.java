@@ -17,7 +17,6 @@ public class main {
     static double temp;
     static char cvar;
     public static double plus(double a,double b){
-
         return a+b;
     }
 
@@ -47,45 +46,41 @@ public class main {
         System.out.print("\033[H\033[2J");
         System.out.flush();
     }
+    public static void cont_check(){
+        System.out.printf("press any key continue or press 'X' to exit : ");
+        sc.nextLine();
+        control = sc.nextLine();
 
+        if (control.equals("X")||control.equals("x")) {
+            clear();
+            System.out.printf("X inputted. calculator will be stopped\n\n");
+            System.exit(0);
+        }
+        clear();
+    }
     public static void set_var(String msg,String var) throws Exception
     {
         System.out.print(msg);
 
         var = sc.next();
+
         if(var.equals(""))
         {
            System.out.println("nothing inputted");
-            System.out.printf("press any key continue or press 'X' to exit : ");
-            control = sc.nextLine();
-            if (control.equals("X")||control.equals("x")) {
-                clear();
-                System.out.printf("\tX inputted. calculator will be stopped");
-                System.exit(0);
-            }
-            sc.nextLine();
-            clear();
+           cont_check();
            throw new Exception();
         }
         cvar = var.charAt(0);
 
-
-
         try{
-
             if(msg.equals(left_msg))
-            {
-
-                Dleft = Double.parseDouble(var);
-
-
-            }
+                {
+                    Dleft = Double.parseDouble(var);
+                }
             else if(msg.equals(right_msg))
-            {
-                Dright = Double.parseDouble(var);
-
-
-            }
+                {
+                    Dright = Double.parseDouble(var);
+                }
 
             else{
                 System.out.print(cvar);
@@ -93,7 +88,6 @@ public class main {
                 switch(cvar)
                 {
                     case '+':
-
                         Dresult = plus(Dleft,Dright);
                         break;
                     case '-':
@@ -112,49 +106,20 @@ public class main {
                         System.out.print("input error please check op input");
                         break;
                 }
-
-
             }
         }
         catch(ArithmeticException e)
-        {
-            clear();
-            System.out.println("you tried diving or moduling by zero \n please check your input");
-            System.out.printf("press any key continue or press 'X' to exit : ");
-            sc.nextLine();
-            control = sc.nextLine();
-
-            if (control.equals("X")||control.equals("x")) {
+            {
                 clear();
-                System.out.printf("X inputted. calculator will be stopped\n\n");
-                System.exit(0);
+                System.out.println("you tried diving or moduling by zero \n please check your input");
+                cont_check();
+                throw new Exception("");
             }
-
-            clear();
-            throw new Exception("");
-
-        }
         catch(Exception e) {
             System.out.printf("wrong input....%n");
-            System.out.printf("press any key continue or press 'X' to exit : ");
-            sc.nextLine();
-            control = sc.nextLine();
-
-            if (control.equals("X")||control.equals("x")) {
-                clear();
-                System.out.printf("X inputted. calculator will be stopped\n\n");
-                System.exit(0);
-            }
-
-            clear();
             throw new Exception("");
         }
-
-
-
-
         clear();
-
     }
 
     public static void main(String[] args)
@@ -166,26 +131,29 @@ public class main {
                 op = new String("");
                 clear();
                 System.out.println("calculator start");
-                try {
-                    set_var(left_msg, left);
-                    set_var(right_msg,right);
-                    set_var(op_msg,op);
-
-                }
-                catch(Exception e){
-                    op = new String("");
-                    continue;
-                }
-
-                clear();
-
-                if(op.equals("/")||op.equals("%")) {
-                    if(Dright == 0)
+                try
+                    {
+                        set_var(left_msg, left);
+                        set_var(right_msg,right);
+                        set_var(op_msg,op);
+                    }
+                catch(Exception e)
                     {
                         op = new String("");
                         continue;
                     }
-                }
+
+                clear();
+
+                if(op.equals("/")||op.equals("%"))
+                    {
+                        if(Dright == 0)
+                        {
+                            op = new String("");
+                            continue;
+                        }
+                    }
+
                 System.out.printf("Dleft : %3f\n",Dleft);
                 System.out.printf("Dright : %3f\n",Dright);
                 System.out.printf("op : %s\n",op);
@@ -194,27 +162,8 @@ public class main {
                 System.out.println(Dresult);
                 System.out.println();
 
-
-                System.out.printf("press any key continue or press 'X' to exit : ");
-                sc.nextLine();
-                control = sc.nextLine();
-
-                if (control.equals("X")||control.equals("x")) {
-                    clear();
-                    System.out.printf("X inputted. calculator will be stopped\n\n");
-                    System.exit(0);
-                }
-                
-                clear();
-
-
-
-
-
+                cont_check();
 
             }//while end
-
-
-
-        }//main end
+       }//main end
     }//class end
